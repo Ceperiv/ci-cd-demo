@@ -38,7 +38,7 @@ jobs:
  
       - name: ArgoCD Login 
         run: | 
-          argocd login http://139.162.143.182:30604/ \ 
+          argocd login http://139.162.143.182:30604 \ 
             --username admin \ 
             --password ovc2dPCPT6DEgzMb \ 
             --insecure --grpc-web --plaintext 
