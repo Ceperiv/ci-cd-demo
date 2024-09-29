@@ -38,23 +38,23 @@ jobs:
  
       - name: ArgoCD Login 
         run: | 
-          argocd login 85.90.247.185:30604 \ 
+          argocd login http://139.162.143.182:30604/ \ 
             --username admin \ 
-            --password vXSJG3RgpsGkabrn \ 
+            --password ovc2dPCPT6DEgzMb \ 
             --insecure --grpc-web --plaintext 
  
       - name: Update ArgoCD Application Parameter with Timestamp 
         run: | 
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ") 
-          argocd app set etherpad-dev \ 
+          argocd app set etherpad \ 
             --parameter env.PIPELINEDEPLOYED=$TIMESTAMP 
  
       - name: Sync ArgoCD Configmap Resource 
         run: | 
-          argocd app sync etherpad-dev \ 
-            --resource apps:ConfigMap:etherpad-dev 
+          argocd app sync etherpad \ 
+            --resource apps:ConfigMap:etherpad 
  
       - name: Sync ArgoCD Deployment Resource 
         run: | 
-          argocd app sync etherpad-dev \ 
-            --resource apps:Deployment:etherpad-dev
+          argocd app sync etherpad \ 
+            --resource apps:Deployment:etherpad
